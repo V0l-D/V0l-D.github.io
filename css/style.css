@@ -7,8 +7,6 @@ body {
     color: #212121;
     font-family: Arial, Helvetica, sans-serif, Whitney;
     padding: 100px 0 30px 0;
-     filter: blur(8px);
-  -webkit-filter: blur(8px);
   }
   
   /*@font-face { font-family: Whitney; src: url('../fonts/other/whitney.ttf'); } */
