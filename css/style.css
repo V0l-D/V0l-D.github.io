@@ -555,6 +555,41 @@ body {
     background: #353535;
     border-radius: 3px;
   }
+
+.lt-register-btn-social:hover,
+  .lt-register-btn-social:focus {
+    color: #fff;
+    background: #272727;
+    border-radius: 3px;
+  }
+
+  .lt-discord-btn-social:hover,
+  .lt-discord-btn-social:focus {
+    color: #fff;
+    background: #4260cf;
+    border-radius: 3px;
+  }
+
+  .lt-login-btn-social:hover,
+  .lt-login-btn-social:focus {
+    color: #fff;
+    background: #1c242e;
+    border-radius: 3px;
+  }
+
+.lt-yt-btn:hover,
+  .lt-yt-btn:focus {
+    color: #fff;
+    background: #C31D1D;
+    border-radius: 3px;
+  }
+
+  .lt-more-btn-social:hover,
+  .lt-more-btn-social:focus {
+    color: #fff;
+    background: #353535;
+    border-radius: 3px;
+  }
   /* Media Queries*/
   
   @media (max-width: 768px) {
