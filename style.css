@@ -209,8 +209,7 @@ video {
 }
 
 #hide {
-  animation: hideAnimation 0s ease-in 3.7s;
-  animation-fill-mode: forwards;
+
 }
 
 @keyframes hideAnimation {
