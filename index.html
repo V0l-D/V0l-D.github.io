@@ -1,81 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Discord-Netflix</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Discord-Netflix</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Fonts & Normalize -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+<!-- Fonts & Normalize -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="./style.css">
+<!-- Favicon -->
+<link rel="shortcut icon" href="icon.png" type="image/png">
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" type="image/jpg" href="https://raw.githubusercontent.com/V0l-D/V0l-D.github.io/refs/heads/main/36ee4211-e02b-4593-bb5a-b5dc3e484b11_icon.png"/>
+<!-- Styles -->
+<link rel="stylesheet" href="./style.css">
+
+<script>
+// Force HTTPS
+if (location.protocol === "http:") location.href = location.href.replace("http:", "https:");
+</script>
 </head>
-
 <body id="unhideme">
-  <!-- Background Video -->
-  <video id="introVideo" autoplay muted playsinline>
-    <source src="https://github.com/V0l-D/V0l-D.github.io/raw/refs/heads/main/36ee4211-e02b-4593-bb5a-b5dc3e484b11_sweet.webm" type="video/webm">
-  </video>
 
-  <!-- Main Page Content -->
-  <div id="container">
-    <div id="maincontainer">
-      <div class="childcontainer">
-        <form>
-          <h1>NETFLIX MEETS DISCORD</h1>
+<!-- Fullscreen intro video (muted for autoplay on all devices) -->
+<video id="hide" playsinline webkit-playsinline muted autoplay preload="auto">
+  <source src="intro.mp4" type="video/mp4">
+</video>
 
-          <div class="maininfo">
-            <div class="img">
-              <img src="https://raw.githubusercontent.com/V0l-D/V0l-D.github.io/refs/heads/main/image.png" class="image-title" />
-            </div>
-            <p>
-              <span>Discord-Netflix</span>
-              <span class="smalltxt">by</span>
-              <a href="https://v0l-d.github.io/" class="txtname">V0l-D</a>
-            </p>
+<!-- Main Content -->
+<div id="container" class="hidden">
+  <div id="maincontainer">
+    <div class="childcontainer">
+      <form>
+        <h1 id="animated-title"></h1>
+
+        <div class="maininfo">
+          <div class="img">
+            <img class="image-title" src="https://raw.githubusercontent.com/V0l-D/V0l-D.github.io/refs/heads/main/image.png" alt="Discord-Netflix Logo" />
           </div>
+          <p>
+            <span>Discord-Netflix</span>
+            <span class="smalltxt">by</span>
+            <a href="https://v0l-d.github.io/" class="txtname">V0l-D</a>
+          </p>
+        </div>
 
+        <div class="buttons">
           <a href="https://github.com/V0l-D/Discord-Netflix" class="repobtn">Github repository</a>
           <a href="https://discord.gg/kbf8EjpxbU" class="discordbtn">Discord server</a>
           <a href="#" class="previewbtn">Preview</a>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 
-  <!-- Video Fade Script -->
-  <script>
-    const video = document.getElementById('introVideo');
-    const container = document.getElementById('unhideme');
+<script>
+// Animated title function
+function animateTitle(text) {
+  const titleEl = document.getElementById('animated-title');
+  titleEl.innerHTML = "";
+  for (let i = 0; i < text.length; i++) {
+    const span = document.createElement('span');
+    span.textContent = text[i];
+    span.style.opacity = 0;
+    span.style.display = "inline-block";
+    span.style.animation = `letterFade 0.5s forwards`;
+    span.style.animationDelay = `${i * 0.08}s`;
+    titleEl.appendChild(span);
+  }
+}
 
-    // Hide content initially
-    container.style.visibility = 'hidden';
+// Main logic
+const video = document.getElementById('hide');
+const container = document.getElementById('container');
+const preFadeTime = 1.5; // seconds before video ends
 
-    // Fade video out after it ends
-    video.addEventListener('ended', () => {
-      video.style.transition = 'opacity 1s ease';
-      video.style.opacity = 0;
+video.addEventListener('loadedmetadata', () => {
+  const fadeStartTime = (video.duration - preFadeTime) * 1000;
+  setTimeout(() => {
+    container.classList.remove('hidden');
+    container.style.opacity = 0;
+    container.style.transition = `opacity ${preFadeTime}s ease`;
+    requestAnimationFrame(() => container.style.opacity = 1);
+    animateTitle("NETFLIXㅤMEETSㅤDISCORD");
+  }, fadeStartTime);
+});
 
-      setTimeout(() => {
-        video.style.display = 'none';
-        container.style.visibility = 'visible'; // Reveal content
-      }, 1000);
-    });
-
-    // Optional: allow click to skip video
-    video.addEventListener('click', () => {
-      video.style.transition = 'opacity 0.5s ease';
-      video.style.opacity = 0;
-      setTimeout(() => {
-        video.style.display = 'none';
-        container.style.visibility = 'visible';
-      }, 500);
-    });
-  </script>
+// Fade out video when ended
+video.addEventListener('ended', () => {
+  video.style.transition = "opacity 1s ease";
+  video.style.opacity = 0;
+  setTimeout(() => video.style.display = 'none', 1000);
+});
+</script>
 </body>
 </html>

@@ -1,10 +1,14 @@
-/* Global */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-  user-select: none;
+  font-family: "Montserrat", sans-serif;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 body {
@@ -14,118 +18,96 @@ body {
   background-color: #000;
 }
 
-/* Background Video */
-#introVideo {
+/* Video */
+video#hide {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 1;
 }
-
-/* Main Container */
-#container {
-  position: relative;
-  z-index: 1; /* above video */
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+#container.hidden { opacity: 0; }
 
 #maincontainer {
   display: flex;
+  overflow: hidden;
   position: relative;
   border-radius: 5px;
-  animation: fadeIn 2s ease forwards;
-  width: 90%;
-  max-width: 500px;
+}
+
+#container {
+  position: fixed; /* use fixed to always center on the viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* horizontal centering */
+  align-items: center;     /* vertical centering */
+  z-index: 10;
+  opacity: 1;
+  padding: 20px;           /* optional padding for small screens */
+  box-sizing: border-box;
 }
 
 .childcontainer {
-  width: 100%;
   padding: 45px 30px;
-  text-align: center;
-  color: #fff;
-  position: relative;
+  width: 600px;
+  max-width: 90%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* center form content horizontally inside childcontainer */
 }
 
-/* Form Content */
-form h1 {
+
+form { text-align:center; position:relative; }
+
+#animated-title {
+  font-size: 22px;
   font-weight: 600;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.maininfo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-}
-
-.maininfo .img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #000;
-}
-
-.maininfo .img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.maininfo p {
-  padding-left: 10px;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-}
-
-.maininfo p .smalltxt,
-.maininfo p .txtname {
-  padding-left: 5px;
-  font-size: 12px;
-  opacity: 0.8;
-  text-decoration: none;
   color: #fff;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
 }
 
-/* Buttons */
-a.repobtn,
-a.discordbtn,
-a.previewbtn {
-  display: block;
-  width: 250px;
-  margin: 10px auto;
-  padding: 15px;
-  border-radius: 3px;
-  text-decoration: none;
-  text-align: center;
-  color: #fff;
-  transition: background 0.2s ease;
+/* Letter fade animation */
+@keyframes letterFade {
+  0% { opacity:0; transform: translateY(20px); }
+  100% { opacity:1; transform: translateY(0); }
 }
 
-.repobtn { background: #242424; }
-.repobtn:hover { background: #1f1f1f; }
+/* Main info */
+.maininfo { display:flex; align-items:center; justify-content:center; }
+.maininfo .img { background:#000; border-radius:50%; width:32px; height:32px; display:flex; justify-content:center; align-items:center; }
+.maininfo .img img { width:100%; }
+.maininfo p { padding-left:10px; color:#fff; }
+.maininfo p span { font-weight:600; }
+.maininfo p .smalltxt { padding-left:5px; font-size:12px; opacity:0.7; }
+.maininfo p .txtname { padding-left:5px; font-size:12px; text-decoration:none; color:#fff; }
 
-.discordbtn { background: #7289DA; }
-.discordbtn:hover { background: #8c9ddd; }
-
-.previewbtn { background: #818181; }
-.previewbtn:hover { background: #9c9c9c; }
-
-/* Fade In Animation */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.buttons a {
+  display:block;
+  width:250px;
+  max-width:90%;
+  margin:10px auto;
+  padding:15px;
+  border-radius:3px;
+  text-decoration:none;
+  color:#fff;
+  text-align:center;
+  transition:0.2s ease;
 }
+
+.repobtn { background:#242424; }
+.repobtn:hover { background:#1f1f1f; }
+
+.discordbtn { background:#7289DA; }
+.discordbtn:hover { background:#8c9ddd; }
+
+.previewbtn { background:#818181; }
+.previewbtn:hover { background:#9c9c9c; }
