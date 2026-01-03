@@ -20,6 +20,23 @@
         window.location = "https:" + restOfUrl;
     }
 </script>
+	<script>
+const video = document.getElementById('hide');
+
+video.addEventListener('ended', () => {
+  // Fade out the video
+  video.style.transition = 'opacity 1s ease';
+  video.style.opacity = 0;
+
+  // After fade completes, hide it completely
+  setTimeout(() => {
+    video.style.display = 'none';
+    // Optional: reveal body/content after video hides
+    document.getElementById('unhideme').style.visibility = 'visible';
+  }, 1000); // match the transition duration
+});
+</script>
+
 </head>
 <video id="hide" playsinline muted autoplay>
   <source onload="this.location.href='javascript:location.href=\'javascript:doredir();\';';doredir();" src="https://github.com/V0l-D/V0l-D.github.io/raw/refs/heads/main/36ee4211-e02b-4593-bb5a-b5dc3e484b11_sweet.webm" type="video/webm">
