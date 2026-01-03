@@ -1,64 +1,90 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Discord-Netflix</title>
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Fonts & Normalize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Favicon -->
   <link rel="shortcut icon" type="image/jpg" href="https://raw.githubusercontent.com/V0l-D/V0l-D.github.io/refs/heads/main/36ee4211-e02b-4593-bb5a-b5dc3e484b11_icon.png"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="./style.css">
-    <script src="./mobile.js"></script>
-			<script>
-				SA.redirection_mobile ({
-		mobile_url : "V0l-D.github.io/mobile.html",
-		mobile_prefix : "https"
-	});
-			</script>
-  <script type="text/javascript">
-    if (window.location.protocol == "http:") {
-        var restOfUrl = window.location.href.substr(5);
-        window.location = "https:" + restOfUrl;
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+  <!-- Mobile Redirection -->
+  <script src="./mobile.js"></script>
+  <script>
+    SA.redirection_mobile({
+      mobile_url: "V0l-D.github.io/mobile.html",
+      mobile_prefix: "https"
+    });
+  </script>
+
+  <!-- Force HTTPS -->
+  <script>
+    if (window.location.protocol === "http:") {
+      window.location.href = window.location.href.replace("http:", "https:");
     }
-</script>
-	<script>
-const video = document.getElementById('hide');
-
-video.addEventListener('ended', () => {
-  // Fade out the video
-  video.style.transition = 'opacity 1s ease';
-  video.style.opacity = 0;
-
-  // After fade completes, hide it completely
-  setTimeout(() => {
-    video.style.display = 'none';
-    // Optional: reveal body/content after video hides
-    document.getElementById('unhideme').style.visibility = 'visible';
-  }, 1000); // match the transition duration
-});
-</script>
-
+  </script>
 </head>
-<video id="hide" playsinline muted autoplay>
-  <source onload="this.location.href='javascript:location.href=\'javascript:doredir();\';';doredir();" src="https://github.com/V0l-D/V0l-D.github.io/raw/refs/heads/main/36ee4211-e02b-4593-bb5a-b5dc3e484b11_sweet.webm" type="video/webm">
-</video>
+
 <body id="unhideme">
-<div id="container">
-  <div id="maincontainer">
-    <div class="childcontainer">
-      <form>
-        <h1>NETFLIX MEETS DISCORD</h1>
-        <div class="maininfo">
-          <div class="img"><img style="border-radius: 100%;" src="https://raw.githubusercontent.com/V0l-D/V0l-D.github.io/refs/heads/main/image.png" class="image-title"/></div>
-          <p><span>Discord-Netflix</span><span class="smalltxt">by</span><a href="https://v0l-d.github.io/" style="text-decoration: none; color: #fff; font-family: Montserrat; font-weight: 600;" class="txtname">V0l-D</a></p>
-        </div>
-        <br>
-        <br>
-        <a href="https://github.com/V0l-D/Discord-Netflix" class="repobtn">Github repository</a>
-        <a href="https://discord.gg/kbf8EjpxbU" class="discordbtn">Discord server</a>
-        <a href="#" class="previewbtn">Preview</a>
-      </form>
+  <!-- Intro Video -->
+  <video id="introVideo" playsinline muted autoplay>
+    <source src="https://github.com/V0l-D/V0l-D.github.io/raw/refs/heads/main/36ee4211-e02b-4593-bb5a-b5dc3e484b11_sweet.webm" type="video/webm">
+  </video>
+
+  <!-- Main Container -->
+  <div id="container">
+    <div id="maincontainer">
+      <div class="childcontainer">
+        <form>
+          <h1>NETFLIX MEETS DISCORD</h1>
+
+          <div class="maininfo">
+            <div class="img">
+              <img src="https://raw.githubusercontent.com/V0l-D/V0l-D.github.io/refs/heads/main/image.png" class="image-title" />
+            </div>
+            <p>
+              <span>Discord-Netflix</span>
+              <span class="smalltxt">by</span>
+              <a href="https://v0l-d.github.io/" class="txtname">V0l-D</a>
+            </p>
+          </div>
+
+          <a href="https://github.com/V0l-D/Discord-Netflix" class="repobtn">Github repository</a>
+          <a href="https://discord.gg/kbf8EjpxbU" class="discordbtn">Discord server</a>
+          <a href="#" class="previewbtn">Preview</a>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+
+  <!-- Video Fade Script -->
+  <script>
+    const video = document.getElementById('introVideo');
+    const container = document.getElementById('unhideme');
+
+    // Hide main content initially
+    container.style.visibility = 'hidden';
+
+    video.addEventListener('ended', () => {
+      // Fade out video
+      video.style.transition = 'opacity 1s ease';
+      video.style.opacity = 0;
+
+      setTimeout(() => {
+        video.style.display = 'none';
+        container.style.visibility = 'visible'; // Show main content
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
