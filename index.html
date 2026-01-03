@@ -14,34 +14,15 @@
 
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/jpg" href="https://raw.githubusercontent.com/V0l-D/V0l-D.github.io/refs/heads/main/36ee4211-e02b-4593-bb5a-b5dc3e484b11_icon.png"/>
-
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
-  <!-- Mobile Redirection -->
-  <script src="./mobile.js"></script>
-  <script>
-    SA.redirection_mobile({
-      mobile_url: "V0l-D.github.io/mobile.html",
-      mobile_prefix: "https"
-    });
-  </script>
-
-  <!-- Force HTTPS -->
-  <script>
-    if (window.location.protocol === "http:") {
-      window.location.href = window.location.href.replace("http:", "https:");
-    }
-  </script>
 </head>
 
 <body id="unhideme">
-  <!-- Intro Video -->
-  <video id="introVideo" playsinline muted autoplay>
+  <!-- Background Video -->
+  <video id="introVideo" autoplay muted playsinline>
     <source src="https://github.com/V0l-D/V0l-D.github.io/raw/refs/heads/main/36ee4211-e02b-4593-bb5a-b5dc3e484b11_sweet.webm" type="video/webm">
   </video>
 
-  <!-- Main Container -->
+  <!-- Main Page Content -->
   <div id="container">
     <div id="maincontainer">
       <div class="childcontainer">
@@ -72,18 +53,28 @@
     const video = document.getElementById('introVideo');
     const container = document.getElementById('unhideme');
 
-    // Hide main content initially
+    // Hide content initially
     container.style.visibility = 'hidden';
 
+    // Fade video out after it ends
     video.addEventListener('ended', () => {
-      // Fade out video
       video.style.transition = 'opacity 1s ease';
       video.style.opacity = 0;
 
       setTimeout(() => {
         video.style.display = 'none';
-        container.style.visibility = 'visible'; // Show main content
+        container.style.visibility = 'visible'; // Reveal content
       }, 1000);
+    });
+
+    // Optional: allow click to skip video
+    video.addEventListener('click', () => {
+      video.style.transition = 'opacity 0.5s ease';
+      video.style.opacity = 0;
+      setTimeout(() => {
+        video.style.display = 'none';
+        container.style.visibility = 'visible';
+      }, 500);
     });
   </script>
 </body>
