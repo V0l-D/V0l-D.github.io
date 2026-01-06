@@ -1,2 +1,2 @@
-# v0l-d.github.io
+# Discord-Netflix.github.io
 Landing page for Discord-Netflix.
